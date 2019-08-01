@@ -3,7 +3,7 @@
 rows=$(tput lines)
 cols=$(tput cols)
 colors=(red green blue purple cyan yellow brown)
-nsingle=10
+nsingle=15
 nmultiple=5
 
 colorstr(){
@@ -14,29 +14,29 @@ colorstr(){
     case $color in
     yellow)
       # echo "well, it works"
-      v=33
+      v="1;33"
       ;;
     red)
-      v=31
+      v="1;31"
       ;;
     green)
-      v=32
+      v="0;32"
       ;;
     blue)
-      v=34
+      v="0;34"
       ;;
     purple)
-      v=35
+      v="0;35"
       ;;
     brown)
-      v=37
+      v="0;33"
       ;;
     cyan)
-      v=36
+      v="0;36"
       ;;
     *)
       # echo "sarrow frog"
-      v=33
+      v="1;31"
       ;;
     esac
     shift 3
@@ -50,7 +50,7 @@ colorstr(){
     fi
         
     tput cup $row $col
-    echo -n -e "\e["$v"m"
+    echo -n -e "\E["$v"m"
     set -f
     echo -n $*
     set +f
@@ -150,13 +150,13 @@ for i in $(seq 1 $nsingle)
 do
   clear
   firework
-  sleep 5
+  sleep 2
 done
 
 clear
 
 center_colorstr $((rows / 2-1)) yellow "delightful and fish everyday!"
-center_colorstr $((rows / 2)) blue "love u~~"
+center_colorstr $((rows / 2)) red "love u~~"
 
 sleep 15
 clear
